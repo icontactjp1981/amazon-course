@@ -1,0 +1,312 @@
+:root {
+    --navy: #1B2A4A;
+    --navy-soft: #2E4370;
+    --blue: #2F6FED;
+    --blue-soft: #E9F0FF;
+    --ink: #1F2937;
+    --ink-soft: #5B6473;
+    --line: #DEE3EC;
+    --bg: #F5F7FB;
+    --white: #FFFFFF;
+    --warn-bg: #FFF7E6;
+    --warn-line: #F0C36D;
+    --radius: 10px;
+    --max: 880px;
+    --max-wide: 1180px;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink);
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  button { font-family: inherit; font-size: inherit; cursor: pointer; }
+  [hidden] { display: none !important; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+  /* ---------- top bar ---------- */
+  .topbar {
+    background: var(--navy);
+    color: var(--white);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .brand {
+    color: var(--white);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    flex: 1;
+    margin-right: 12px;
+  }
+  .brand:hover { text-decoration: none; }
+  .nav { display: flex; align-items: center; gap: 4px; }
+  .nav a, .nav-logout {
+    color: rgba(255,255,255,0.85);
+    background: transparent;
+    border: 0;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .nav a:hover, .nav-logout:hover { background: rgba(255,255,255,0.12); text-decoration: none; }
+  .nav a.active { color: var(--white); background: rgba(255,255,255,0.18); }
+
+  /* ---------- layout ---------- */
+  .app {
+    flex: 1;
+    width: 100%;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
+  .app.wide { max-width: var(--max-wide); }
+  .loading { color: var(--ink-soft); padding: 60px 0; text-align: center; }
+
+  /* ---------- home: 学習コンテンツ + 運営情報 ---------- */
+  .home-grid { display: grid; grid-template-columns: 1fr; gap: 8px 40px; margin-top: 8px; }
+  .home-grid > section { min-width: 0; }
+  .home-grid .ops { order: -1; }            /* スマホ：運営情報 → 学習コンテンツ */
+  .home-grid h2 { margin-top: 28px; }
+  @media (min-width: 960px) {
+    .home-grid { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; }
+    .home-grid .ops { order: 0; position: sticky; top: 72px; }   /* PC：左＝学習、右＝運営 */
+    .home-grid .ops .info-list li { padding: 14px 16px; }
+    .home-grid .ops .info-list h3 { font-size: 15px; }
+    .home-grid .ops .info-list p { font-size: 14px; }
+    .home-grid .ops .links a { padding: 10px 12px; font-size: 14px; }
+  }
+  .footer {
+    border-top: 1px solid var(--line);
+    background: var(--white);
+    color: var(--ink-soft);
+    font-size: 13px;
+    padding: 18px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 24px;
+    justify-content: center;
+  }
+
+  h1 { font-size: 24px; font-weight: 700; line-height: 1.4; margin: 0 0 8px; color: var(--navy); }
+  h2 { font-size: 18px; font-weight: 700; margin: 36px 0 12px; color: var(--navy); }
+  .lead { color: var(--ink-soft); margin: 0 0 20px; }
+
+  .crumb { font-size: 14px; color: var(--ink-soft); margin-bottom: 10px; }
+  .crumb a { color: var(--ink-soft); }
+  .crumb a:hover { color: var(--blue); }
+
+  /* ---------- login ---------- */
+  .login-wrap {
+    max-width: 400px;
+    margin: 8vh auto 0;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+  }
+  .login-wrap h1 { font-size: 20px; margin-bottom: 4px; }
+  .login-wrap .lead { font-size: 14px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .field input {
+    width: 100%;
+    font: inherit;
+    padding: 11px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--white);
+  }
+  .field input:focus { border-color: var(--blue); outline: none; box-shadow: 0 0 0 3px var(--blue-soft); }
+  .btn {
+    display: inline-block;
+    background: var(--blue);
+    color: var(--white);
+    border: 0;
+    border-radius: 8px;
+    padding: 11px 18px;
+    font-weight: 500;
+    width: 100%;
+  }
+  .btn:hover { background: #2559C4; text-decoration: none; }
+  .btn:disabled { opacity: 0.6; cursor: default; }
+  .error { color: #B42318; font-size: 14px; margin: 0 0 12px; min-height: 1.5em; }
+  .login-help { font-size: 13px; color: var(--ink-soft); margin-top: 16px; }
+
+  /* ---------- announcements ---------- */
+  .greeting { font-size: 15px; color: var(--ink-soft); margin: 0 0 4px; }
+  .ann-list { list-style: none; margin: 0; padding: 0; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); }
+  .ann-list li { padding: 14px 18px; border-top: 1px solid var(--line); }
+  .ann-list li:first-child { border-top: 0; }
+  .ann-date { font-size: 13px; color: var(--ink-soft); margin-right: 10px; }
+  .ann-title { font-weight: 500; }
+  .ann-body { font-size: 14px; color: var(--ink); margin: 4px 0 0; white-space: pre-line; }
+  .ann-empty { padding: 14px 18px; color: var(--ink-soft); font-size: 14px; }
+
+  /* ---------- chapter route (home) ---------- */
+  .route { list-style: none; margin: 0; padding: 0; position: relative; }
+  .route::before {
+    content: "";
+    position: absolute;
+    left: 19px;
+    top: 24px;
+    bottom: 24px;
+    width: 2px;
+    background: var(--line);
+  }
+  .route li { position: relative; padding-left: 56px; margin-bottom: 10px; }
+  .route .num {
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+  }
+  .route a.card {
+    display: block;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    color: var(--ink);
+  }
+  .route a.card:hover { border-color: var(--blue); text-decoration: none; }
+  .route .card-title { font-weight: 700; color: var(--navy); }
+  .route .card-meta { font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
+
+  /* ---------- lesson list (chapter page) ---------- */
+  .lesson-list { list-style: none; margin: 0; padding: 0; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .lesson-list li { border-top: 1px solid var(--line); }
+  .lesson-list li:first-child { border-top: 0; }
+  .lesson-list a {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    color: var(--ink);
+  }
+  .lesson-list a:hover { background: var(--blue-soft); text-decoration: none; }
+  .lesson-list .idx { color: var(--ink-soft); font-size: 14px; text-align: center; }
+  .lesson-list .l-title { font-weight: 500; }
+  .tag {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .tag.video { background: var(--blue-soft); border-color: transparent; color: var(--blue); }
+
+  /* ---------- lesson page ---------- */
+  .video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 4px 0 24px;
+  }
+  .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  .notes { list-style: none; margin: 0 0 24px; padding: 0; }
+  .notes li {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
+  .notes li.warn { background: var(--warn-bg); border-color: var(--warn-line); }
+
+  .links { list-style: none; margin: 0 0 24px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-weight: 500;
+  }
+  .links a:hover { background: var(--blue-soft); text-decoration: none; }
+  .links a::after { content: "↗"; font-size: 14px; margin-left: 12px; }
+
+  .pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 32px; }
+  .pager a {
+    flex: 1;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: var(--ink);
+    font-size: 14px;
+    max-width: 48%;
+  }
+  .pager a:hover { border-color: var(--blue); text-decoration: none; }
+  .pager .dir { display: block; font-size: 12px; color: var(--ink-soft); }
+  .pager .next { text-align: right; margin-left: auto; }
+
+  /* ---------- info page ---------- */
+  .info-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .info-list li { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+  .info-list h3 { margin: 0 0 6px; font-size: 16px; color: var(--navy); }
+  .info-list p { margin: 0 0 10px; font-size: 15px; }
+  .info-list .links { margin-bottom: 0; }
+  .info-list .pending { color: var(--ink-soft); font-size: 14px; }
+
+  /* ---------- responsive ---------- */
+  @media (min-width: 720px) {
+    .app { padding: 40px 24px 80px; }
+    h1 { font-size: 28px; }
+    .route li { margin-bottom: 12px; }
+  }
+  @media (max-width: 480px) {
+    .topbar { padding: 0 14px; }
+    .brand { font-size: 15px; }
+    .nav { gap: 0; flex-shrink: 0; }
+    .nav a, .nav-logout { padding: 6px 7px; font-size: 13px; }
+    .app { padding: 20px 14px 48px; }
+    .login-wrap { padding: 26px 20px; margin-top: 4vh; }
+    .lesson-list a { grid-template-columns: 28px 1fr auto; padding: 12px 12px; }
+    .pager { flex-direction: column; }
+    .pager a { max-width: none; }
+    .pager .next { margin-left: 0; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .route a.card, .lesson-list a, .links a { transition: background-color .15s, border-color .15s; }
+  }
