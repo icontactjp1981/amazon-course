@@ -122,8 +122,8 @@
         <li>
           <h3>${esc(it.title)}</h3>
           ${it.body ? `<p>${esc(it.body)}</p>` : ''}
-          ${sched.length ? `<ul class="schedule">${sched.map(s => `<li>${esc(s)}</li>`).join('')}</ul>` : ''}
           ${linksHtml(valid)}
+          ${sched.length ? `<ul class="schedule">${sched.map(s => `<li>${esc(s)}</li>`).join('')}</ul>` : ''}
           ${pending.length ? `<p class="pending">${esc(pending.join('／'))}：準備中です。決まり次第ここに掲載します。</p>` : ''}
         </li>`;
     }).join('');
@@ -163,9 +163,11 @@
       <p class="greeting">こんにちは、${esc(DATA.name)} さん</p>
       ${annHtml ? `<h1>お知らせ</h1>${annHtml}` : ''}
       <div class="home-grid">
-        <section class="course" id="course">
+        <div class="course-head">
           <h2>講座の進め方</h2>
           <p class="lead">上から順番に進めてください。準備編が終わっていない方は、まず準備編から。</p>
+        </div>
+        <section class="course" id="course">
           ${routeHtml}
         </section>
         ${opsHtml()}

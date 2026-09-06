@@ -91,7 +91,10 @@
   .home-grid h2 { margin-top: 28px; }
   @media (min-width: 960px) {
     .home-grid { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; }
-    .home-grid .ops { order: 0; position: sticky; top: 72px; }   /* PC：左＝学習、右＝運営 */
+    /* 1行目＝講座の見出し、2行目＝講座カードと運営カード。同じ行なので上端が揃う */
+    .home-grid .course-head { grid-column: 1; grid-row: 1; }
+    .home-grid .course { grid-column: 1; grid-row: 2; }
+    .home-grid .ops { grid-column: 2; grid-row: 2; order: 0; position: sticky; top: 72px; }
     .home-grid .ops .info-list > li { padding: 14px 16px; }
     .home-grid .ops .info-list h3 { font-size: 15px; }
     .home-grid .ops .info-list p { font-size: 14px; }
@@ -290,7 +293,7 @@
   .info-list .pending { color: var(--ink-soft); font-size: 14px; }
   /* 日程は2段組み。左に前半、右に後半が入り、カードの高さが半分で済む */
   .info-list .schedule {
-    list-style: none; margin: 0 0 12px; padding: 0;
+    list-style: none; margin: 12px 0 0; padding: 0;
     columns: 2; column-gap: 12px;
   }
   .info-list .schedule li {
