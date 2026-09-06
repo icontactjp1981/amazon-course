@@ -288,6 +288,11 @@
   .info-list p { margin: 0 0 10px; font-size: 15px; }
   .info-list .links { margin-bottom: 0; }
   .info-list .pending { color: var(--ink-soft); font-size: 14px; }
+  .info-list .schedule { list-style: none; margin: 0 0 10px; padding: 0; display: grid; gap: 2px; }
+  .info-list .schedule li {
+    background: none; border: 0; border-radius: 0; padding: 0;
+    font-size: 14px; color: var(--ink-soft); font-variant-numeric: tabular-nums;
+  }
 
   /* ---------- responsive ---------- */
   @media (min-width: 720px) {

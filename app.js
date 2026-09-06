@@ -117,17 +117,18 @@
     const items = (ops.items || []).map(it => {
       const valid = (it.links || []).filter(l => l && l.url);
       const pending = (it.links || []).filter(l => l && !l.url).map(l => l.label);
+      const sched = (it.schedule || []).filter(Boolean);
       return `
         <li>
           <h3>${esc(it.title)}</h3>
           ${it.body ? `<p>${esc(it.body)}</p>` : ''}
+          ${sched.length ? `<ul class="schedule">${sched.map(s => `<li>${esc(s)}</li>`).join('')}</ul>` : ''}
           ${linksHtml(valid)}
           ${pending.length ? `<p class="pending">${esc(pending.join('／'))}：準備中です。決まり次第ここに掲載します。</p>` : ''}
         </li>`;
     }).join('');
     return `
       <section class="ops" id="ops">
-        <h2>運営情報</h2>
         ${ops.intro ? `<p class="lead">${esc(ops.intro)}</p>` : ''}
         <ul class="info-list">${items}</ul>
       </section>`;
